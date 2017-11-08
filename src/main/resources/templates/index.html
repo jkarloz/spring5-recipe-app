@@ -1,21 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Recipe Home</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/styles.js"></script>
 </head>
 <body>
-	<h1>MyRecipes!</h1>
-	
-	<table>
-		<tr>
-			<th>Id</th>
-			<th>Description</th>
-		</tr>
-		<tr th:each="recipe : ${recipes}">
-			<td th:text="${recipe.id}">123</td>
-			<td th:text="${recipe.description}">Tasty Goodness</td>
-		</tr>
-	</table>
+	<div class="container-fluid" style="margin-top: 20px">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-primary">
+					<div id="headerdiv">
+						<h1>My Recipes!</h1>
+					</div>
+					<div id="bodydiv" >
+						<div class="table-responsive" th:if="${not #lists.isEmpty(recipes)}">
+							<table id="recipeslist" class= "thead-inverse">
+								<thead>
+									<tr>
+										<th>Id</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:remove="all">
+										<td th:text="${recipe.id}">123</td>
+										<td th:text="${recipe.description}">Tasty Goodness1</td>
+									</tr>
+									<tr th:remove="all">
+										<td th:text="${recipe.id}">123</td>
+										<td th:text="${recipe.description}">Tasty Goodness2</td>
+									</tr>
+									<tr th:each="recipe : ${recipes}">
+										<td th:text="${recipe.id}">123</td>
+										<td th:text="${recipe.description}">Tasty Goodness3</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
