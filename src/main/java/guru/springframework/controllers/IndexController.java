@@ -5,11 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import guru.springframework.services.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Juan Carlos - 2017/10/30
  *
  */
+@Slf4j
 @Controller
 public class IndexController {
 	
@@ -21,7 +23,7 @@ public class IndexController {
 
 	@RequestMapping({"", "/", "/index"})
 	public String getIndexPage(Model model) {
-		model.addAttribute("recipes", recipeService.getRecipes());
-		
+		log.debug("*** Processing request in controller");
+		model.addAttribute("recipes", recipeService.getRecipes());		
 		return "index";}
 }

@@ -19,6 +19,8 @@ import javax.persistence.OneToOne;
 
 import guru.springframework.enums.Difficulty;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author Juan Carlos - 2017/10/30
