@@ -31,4 +31,13 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipeSet;
 	}
 
+	/**
+	 * @param l
+	 * @return
+	 */
+	public Recipe findById(long l) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

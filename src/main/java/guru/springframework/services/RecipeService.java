@@ -10,4 +10,10 @@ import guru.springframework.domain.Recipe;
  */
 public interface RecipeService {
 	Set<Recipe> getRecipes();
+
+	/**
+	 * @param anyLong
+	 * @return
+	 */
+	Object findById(long anyLong);
 }
