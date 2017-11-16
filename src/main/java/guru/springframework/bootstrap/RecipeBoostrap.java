@@ -120,6 +120,9 @@ public class RecipeBoostrap implements ApplicationListener<ContextRefreshedEvent
         guacRecipe.setPrepTime(10);
         guacRecipe.setCookTime(0);
         guacRecipe.setDifficulty(Difficulty.EASY);
+        guacRecipe.setServings(3);
+        guacRecipe.setSource("Internet Page");
+        guacRecipe.setUrl("http://www.taste.com.au");
         guacRecipe.setDirections("1 Cut avocado, remove flesh: Cut the avocados in half. Remove seed. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon" +
                 "\n" +
                 "2 Mash with a fork: Using a fork, roughly mash the avocado. (Don't overdo it! The guacamole should be a little chunky.)" +
