@@ -28,7 +28,7 @@
                                     <li>cat two</li>
                                     <li>cat three</li>
                                 </ul>
-                                <ul th:each="category : ${categories}">
+                                <ul th:each="category : ${recipe.categories}">
                                 	<li th:text="${category.description}">1</li>
                                 </ul>
                             </div>
@@ -89,7 +89,7 @@
                                     <li>1 Teaspoon of chocolate</li>
                                     <li>1 Teaspoon of Sugar</li>
                                 </ul>
-                                <ul th:each="ingredient : ${ingredients}">
+                                <ul th:each="ingredient : ${recipe.ingredients}">
                                     <li th:text="${ingredient.amount + ' ' + ingredient.description}">1 Cup of milk</li>
                                 </ul>
                             </div>

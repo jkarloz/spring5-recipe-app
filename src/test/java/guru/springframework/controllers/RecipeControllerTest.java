@@ -2,6 +2,7 @@ package guru.springframework.controllers;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -14,8 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import guru.springframework.domain.Recipe;
-import guru.springframework.services.CategoryService;
-import guru.springframework.services.IngredientService;
 import guru.springframework.services.RecipeService;
 
 /**
@@ -27,12 +26,6 @@ public class RecipeControllerTest {
 	@Mock
 	RecipeService recipeService;
 	
-	@Mock
-	CategoryService categoryService;
-	
-	@Mock
-	IngredientService ingredientService;
-	
 	RecipeController controller;
 
 	/**
@@ -41,7 +34,7 @@ public class RecipeControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		controller = new RecipeController(recipeService, categoryService, ingredientService);
+		controller = new RecipeController(recipeService);
 	}
 
 	@Test
@@ -55,7 +48,8 @@ public class RecipeControllerTest {
 		
 		mockMvc.perform(get("/recipe/show/1"))
 			.andExpect(status().isOk())
-			.andExpect(view().name("recipe/show"));
+			.andExpect(view().name("recipe/show"))
+			.andExpect(model().attributeExists("recipe"));
 	}
 
 }
