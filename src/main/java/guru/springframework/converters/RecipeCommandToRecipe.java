@@ -4,6 +4,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
+import guru.springframework.command.NotesCommand;
 import guru.springframework.command.RecipeCommand;
 import guru.springframework.domain.Recipe;
 import lombok.Synchronized;
