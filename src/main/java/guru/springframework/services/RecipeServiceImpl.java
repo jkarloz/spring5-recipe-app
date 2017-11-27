@@ -68,4 +68,12 @@ public class RecipeServiceImpl implements RecipeService {
         return recipeToRecipeCommand.convert(savedRecipe);
 	}
 
+	/* (non-Javadoc)
+	 * @see guru.springframework.services.RecipeService#findCommandById(java.lang.Long)
+	 */
+	@Override
+	public RecipeCommand findCommandById(Long l) {
+		return recipeToRecipeCommand.convert(findById(l));
+	}
+
 }
