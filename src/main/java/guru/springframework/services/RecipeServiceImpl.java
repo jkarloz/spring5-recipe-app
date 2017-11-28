@@ -76,4 +76,12 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipeToRecipeCommand.convert(findById(l));
 	}
 
+	/* (non-Javadoc)
+	 * @see guru.springframework.services.RecipeService#deleteById(java.lang.Long)
+	 */
+	@Override
+	public void deleteById(Long idToDelete) {
+		recipeRepository.deleteById(idToDelete);
+	}
+
 }
