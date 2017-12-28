@@ -7,11 +7,13 @@ import org.springframework.stereotype.Component;
 import guru.springframework.command.IngredientCommand;
 import guru.springframework.domain.Ingredient;
 import lombok.Synchronized;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Juan Carlos - 2017/11/24
  *
  */
+@Slf4j
 @Component
 public class IngredientToIngredientCommand implements Converter<Ingredient, IngredientCommand> {
 	
@@ -33,6 +35,7 @@ public class IngredientToIngredientCommand implements Converter<Ingredient, Ingr
 		IngredientCommand ingredientCommand = new IngredientCommand(); 
 		ingredientCommand.setId(source.getId());
 		ingredientCommand.setDescription(source.getDescription());
+		log.debug("converting to command : " + source.getDescription());
 		ingredientCommand.setAmount(source.getAmount());
 		ingredientCommand.setUnitOfMeasure(uomConverter.convert(source.getUom()));
 		
