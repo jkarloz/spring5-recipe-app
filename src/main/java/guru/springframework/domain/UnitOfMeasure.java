@@ -6,12 +6,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author Juan Carlos - 2017/11/01
  *
  */
-@Data
+@Getter
+@Setter
 @Entity
 public class UnitOfMeasure {
 	

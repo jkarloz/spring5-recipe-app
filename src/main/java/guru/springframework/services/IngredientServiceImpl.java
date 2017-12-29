@@ -64,6 +64,7 @@ public class IngredientServiceImpl implements IngredientService {
 	@Transactional
 	public IngredientCommand saveIngredientCommand(IngredientCommand command) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(command.getRecipeId());
+        Long savedIngredientId = null;
 
         if(!recipeOptional.isPresent()){
 
@@ -109,11 +110,24 @@ public class IngredientServiceImpl implements IngredientService {
                         .findFirst();
             }
 			
-			//to do check for fail
-			return ingredientToIngredientCommand.convert(savedRecipe.getIngredients().stream()
-					.filter(recipeIngredients -> recipeIngredients.getId().equals(command.getId()))
-					.findFirst()
-					.get());
+            if(savedIngredientOptional.isPresent()) {
+            	savedIngredientId = savedIngredientOptional.get().getId();
+    			//to do check for fail
+            	
+            	if (savedRecipe.getIngredients() != null) {
+            		for (Ingredient ingredient: savedRecipe.getIngredients()) {
+            			if (ingredient.getId().equals(savedIngredientId)) {
+                			return ingredientToIngredientCommand.convert(ingredient);
+            			}
+            		}
+            	}
+            	
+            	log.error("No matching ingredient Id was found for ingredient: " + command.getDescription());
+                return new IngredientCommand();
+            } else {
+            	log.error("New Ingredient Id not found for description: " + command.getDescription());
+                return new IngredientCommand();
+            }
 		}
 	}
 }
