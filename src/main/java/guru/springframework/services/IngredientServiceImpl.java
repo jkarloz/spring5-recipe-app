@@ -10,6 +10,7 @@ import guru.springframework.converters.IngredientCommandToIngredient;
 import guru.springframework.converters.IngredientToIngredientCommand;
 import guru.springframework.domain.Ingredient;
 import guru.springframework.domain.Recipe;
+import guru.springframework.repositories.IngredientRepository;
 import guru.springframework.repositories.RecipeRepository;
 import guru.springframework.repositories.UnitOfMeasureRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -26,14 +27,16 @@ public class IngredientServiceImpl implements IngredientService {
 	private final RecipeRepository recipeRepository;
 	private final UnitOfMeasureRepository unitOfMeasureRepository;
 	private final IngredientCommandToIngredient ingredientCommandToIngredient;
+	private final IngredientRepository ingredientRepository;
 
 	public IngredientServiceImpl(IngredientToIngredientCommand ingredientToIngredientCommand,
 			RecipeRepository recipeRepository, UnitOfMeasureRepository unitOfMeasureRepository, 
-			IngredientCommandToIngredient ingredientCommandToIngredient) {
+			IngredientCommandToIngredient ingredientCommandToIngredient, IngredientRepository ingredientRepository) {
 		this.ingredientToIngredientCommand = ingredientToIngredientCommand;
 		this.recipeRepository = recipeRepository;
 		this.unitOfMeasureRepository = unitOfMeasureRepository;
 		this.ingredientCommandToIngredient = ingredientCommandToIngredient;
+		this.ingredientRepository = ingredientRepository;
 	}
 
 	@Override
@@ -129,5 +132,22 @@ public class IngredientServiceImpl implements IngredientService {
                 return new IngredientCommand();
             }
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see guru.springframework.services.IngredientService#deleteByRecipeIdAndIngredientId(java.lang.Long, java.lang.Long)
+	 */
+	@Override
+	@Transactional
+	public void deleteByRecipeIdAndIngredientId(Long recipeId, Long ingredientId) {
+		Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);
+
+        if(!recipeOptional.isPresent()){
+
+            //todo toss error if not found!
+            log.error("Recipe not found for id: " + recipeId);
+        } else {
+        	ingredientRepository.deleteByIdAndRecipe(ingredientId, recipeOptional.get());
+        }
 	}
 }

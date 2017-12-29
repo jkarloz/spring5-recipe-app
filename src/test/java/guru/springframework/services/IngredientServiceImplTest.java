@@ -4,13 +4,9 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.ArgumentMatchers.*;
-
-import java.util.HashSet;
 import java.util.Optional;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
@@ -23,6 +19,7 @@ import guru.springframework.converters.UnitOfMeasureCommandToUnitOfMeasure;
 import guru.springframework.converters.UnitOfMeasureToUnitOfMeasureCommand;
 import guru.springframework.domain.Ingredient;
 import guru.springframework.domain.Recipe;
+import guru.springframework.repositories.IngredientRepository;
 import guru.springframework.repositories.RecipeRepository;
 import guru.springframework.repositories.UnitOfMeasureRepository;
 
@@ -41,6 +38,8 @@ public class IngredientServiceImplTest {
 	@Mock
 	UnitOfMeasureRepository unitOfMeasureRepository;
 	IngredientCommandToIngredient ingredientCommandToIngredient;
+	@Mock
+	IngredientRepository ingredientRepository;
 	
 	//init converters
 	public IngredientServiceImplTest() {
@@ -55,7 +54,7 @@ public class IngredientServiceImplTest {
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		ingredientService = new IngredientServiceImpl(ingredientToIngredientCommand, recipeRepository, 
-				unitOfMeasureRepository, ingredientCommandToIngredient);		
+				unitOfMeasureRepository, ingredientCommandToIngredient, ingredientRepository);		
 	}
 	
 	@Test
