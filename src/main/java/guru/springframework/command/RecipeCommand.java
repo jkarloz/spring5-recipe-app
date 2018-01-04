@@ -3,9 +3,6 @@ package guru.springframework.command;
 import java.util.HashSet;
 import java.util.Set;
 
-import guru.springframework.domain.Category;
-import guru.springframework.domain.Ingredient;
-import guru.springframework.domain.Notes;
 import guru.springframework.enums.Difficulty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
