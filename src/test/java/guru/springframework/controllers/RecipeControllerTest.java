@@ -73,6 +73,15 @@ public class RecipeControllerTest {
 	}
 	
 	@Test
+	public void testGetRecipeNumberFormatError() throws Exception {
+		String wrongId = "abcd";
+		
+		mockMvc.perform(get("/recipe/{id}/show", wrongId))
+			.andExpect(status().isBadRequest())
+			.andExpect(view().name("numberformaterror"));
+	}
+	
+	@Test
     public void testGetNewRecipeForm() throws Exception {
         RecipeCommand command = new RecipeCommand();
 
