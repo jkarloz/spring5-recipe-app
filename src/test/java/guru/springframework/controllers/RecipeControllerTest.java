@@ -78,7 +78,7 @@ public class RecipeControllerTest {
 		
 		mockMvc.perform(get("/recipe/{id}/show", wrongId))
 			.andExpect(status().isBadRequest())
-			.andExpect(view().name("numberformaterror"));
+			.andExpect(view().name("400error"));
 	}
 	
 	@Test

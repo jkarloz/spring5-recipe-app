@@ -81,7 +81,7 @@ public class RecipeController {
 		log.error("Handling Number Format error.");
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("numberformaterror");
+		modelAndView.setViewName("400error");
 		modelAndView.addObject("exception", ex);
 		
 		return modelAndView;
